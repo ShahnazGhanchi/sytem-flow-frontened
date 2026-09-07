@@ -9,15 +9,19 @@ export default function UserDashboard({ token }) {
   const [description, setDescription] = useState('');
   const [type, setType] = useState('Technical');
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
+
   useEffect(() => {
     fetchTickets();
   }, []);
 
   const fetchTickets = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/api/tickets', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
+   try {
+  const response = await fetch(`${API_BASE_URL}/api/tickets`, {
+    headers: { 
+      'Authorization': `Bearer ${token}` 
+    }
+  });
       if (response.ok) {
         const data = await response.json();
         setTickets(Array.isArray(data) ? data : (data.tickets || data.data || []));
@@ -32,7 +36,7 @@ export default function UserDashboard({ token }) {
     if (!subject || !description) return alert('Please fill out all fields');
 
     try {
-      const response = await fetch('http://localhost:8000/api/tickets', {
+      const response = await fetch(`${API_BASE_URL}/api/tickets`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

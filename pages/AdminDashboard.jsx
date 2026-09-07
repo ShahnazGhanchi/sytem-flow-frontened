@@ -9,6 +9,8 @@ export default function AdminDashboard({ token }) {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
+
   useEffect(() => {
     fetchAdminData();
     fetchWorkers();
@@ -17,7 +19,7 @@ export default function AdminDashboard({ token }) {
   // 1. Fetch All Tickets for Admin
   const fetchAdminData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/tickets', {
+      const response = await fetch('/api/tickets', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -37,7 +39,7 @@ export default function AdminDashboard({ token }) {
   // 2. Fetch Workers for Dropdown
   const fetchWorkers = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/users/workers', {
+      const response = await fetch(`${API_BASE_URL}/api/tickets`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -58,7 +60,7 @@ export default function AdminDashboard({ token }) {
 
   try {
     // URL badal kar /assign/${ticketId} kar diya hai jo aap ke backend route se match karta hai
-    const response = await fetch(`http://localhost:8000/api/tickets/assign/${ticketId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/workers`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

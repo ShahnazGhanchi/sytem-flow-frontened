@@ -12,6 +12,7 @@ function Auth() {
   const [password, setPassword] = useState("");
 
   // Login / Signup
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,8 +23,8 @@ function Auth() {
 
     try {
       const url = isLogin
-        ? "http://localhost:8000/api/auth/login"
-        : "http://localhost:8000/api/auth/register";
+        ? `${API_BASE_URL}/api/auth/login`
+        : `${API_BASE_URL}/api/auth/register`;
 
       const body = isLogin
         ? { email, password }

@@ -5,6 +5,8 @@ export default function WorkerDashboard({ token }) {
   const [tickets, setTickets] = useState([]);
   const [selectedDetail, setSelectedDetail] = useState(null);
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
+
   useEffect(() => {
     fetchAssignedTickets();
   }, [token]);
@@ -12,7 +14,7 @@ export default function WorkerDashboard({ token }) {
   // 1. Fixed URL: /api/tickets (Backend matches role automatically)
   const fetchAssignedTickets = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/tickets', {
+      const response = await fetch('${API_BASE_URL}/api/tickets', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -27,7 +29,7 @@ export default function WorkerDashboard({ token }) {
   // 2. Fixed URL to /api/tickets/status/${ticketId} & Method 'PUT'
   const handleStatusUpdate = async (ticketId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/tickets/status/${ticketId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tickets/status/${ticketId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
