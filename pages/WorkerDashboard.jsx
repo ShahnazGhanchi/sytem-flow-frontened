@@ -5,7 +5,7 @@ export default function WorkerDashboard({ token }) {
   const [tickets, setTickets] = useState([]);
   const [selectedDetail, setSelectedDetail] = useState(null);
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
+ const API_BASE_URL = 'https://support-flow-dusky.vercel.app';
 
   useEffect(() => {
     fetchAssignedTickets();

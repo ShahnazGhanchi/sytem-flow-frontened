@@ -9,7 +9,7 @@ export default function UserDashboard({ token }) {
   const [description, setDescription] = useState('');
   const [type, setType] = useState('Technical');
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
+  const API_BASE_URL = 'https://support-flow-dusky.vercel.app';
 
   useEffect(() => {
     fetchTickets();
