@@ -12,7 +12,7 @@ function Auth() {
   const [password, setPassword] = useState("");
 
   // Login / Signup
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://support-flow-dusky.vercel.app';
+  const API_BASE_URL = 'https://support-flow-dusky.vercel.app';
   const handleSubmit = async (e) => {
     e.preventDefault();
 
